@@ -14,8 +14,8 @@ public class Algo1 implements Algorithm{
     public Solution solve(Instance instance, int randomSeed) {
         Random random = new Random(randomSeed);
         // Get a tour using a greedy algorithm
-        int[] tour = NearestNeighbor.get(instance);
-//        int[] tour = LinKernighan.get(instance);
+//        int[] tour = NearestNeighbor.get(instance);
+        int[] tour = LinKernighan.get(instance);
         if (tour == null) return new Solution();
 
         // Get a pickingPlan using a greedy algorithm
