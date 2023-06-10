@@ -73,5 +73,5 @@ n = 1
 # test all instances
 for instance in instances:
   for i in range(0,n):
-    os.system("java -jar out/artifacts/travelling_thief_problem_jar/travelling-thief-problem.jar "+instance+" algo1 test.csv 600 1")
+    os.system("java -jar out/artifacts/travelling_thief_problem_jar/travelling-thief-problem.jar "+instance+" algo2 test.csv 600 1")
     time.sleep(1)
