@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="travelling-thief-problem:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/travelling_thief_problem_jar</output-path>
+    <root id="archive" name="travelling-thief-problem.jar">
+      <element id="module-output" name="travelling-thief-problem" />
+    </root>
+  </artifact>
+</component>

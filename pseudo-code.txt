@@ -1,0 +1,63 @@
+function: NearestNeighbor:
+    Π <- ∅
+    for i <- 1 to numOfCities:
+        city <- 0
+        for j <- 1 to numOfCities:
+            if Π contain j then
+                continue
+            end if
+            dist <- distance from last city to city j
+            if current distance is the shortest then
+                city = j
+            end if
+        end for
+        Add city to the end of Π
+    end for
+    return Π
+end function
+
+function: FixPickingPlan(Y)
+    for every item Iik compute score1(Iik)
+    L acquire list by sorting items according to scores
+    W <- total weight of items
+    i <- 0
+    while W > C do
+        if W <= C break
+        Y(pos(L(i))) <- 0
+        W <- W - wLi
+    end while
+    return Y
+end function
+
+function: BitFlip
+
+
+function: algo1
+    Π <- get tour with LK or SimpleGreedyTour
+    Y <- all true
+    Y <- FixPickingPlan(Y)
+	Y <- BitFlip(Y)
+    return (Π, Y)
+end function
+
+function: SimulatedAnnealing(Y)
+
+
+function: algo2:
+	Π <- get tour with LK or SimpleGreedyTour
+    Y <- all true
+    Y <- FixPickingPlan(Y)
+	solution <- evaluate(Π, Y)
+	improvement = true
+	while improvement is true
+		improvement = false
+		Π <- 2-opt
+		Y <- SimulatedAnnealing(Y)
+		newSolution <- evaluate(Π, Y)
+		if newSolution.Z > solution.Z:
+			impovement = true
+		end if
+	end while
+	return (Π, Y)
+end function
+
