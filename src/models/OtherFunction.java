@@ -68,4 +68,59 @@ public class OtherFunction {
         return getListItemInTour(instance, tour, pickingPlan);
     }
 
+    public static void reverseSegment(int[] tour, int l, int r){
+        if (l < r){
+            while (l < r) {
+                int temp = tour[l];
+                tour[l] = tour[r];
+                tour[r] = temp;
+                l++;
+                r--;
+            }
+            if (tour[0] == 0) return;
+            int pos = 0;
+            for (int i = 0; i < tour.length; i++){
+                if (tour[i] == 0) {
+                    pos = i;
+                    break;
+                }
+            }
+            int[] tempArray = new  int[tour.length];
+            for (int i = 0; i < tour.length; i++){
+                tempArray[i] = tour[pos];
+                pos += 1;
+                if (pos == tour.length) pos = 0;
+            }
+            System.arraycopy(tempArray, 0, tour, 0, tour.length);
+
+        }
+        else{
+            while (r < l) {
+                int temp = tour[l];
+                tour[l] = tour[r];
+                tour[r] = temp;
+                l++;
+                r--;
+                if (l == tour.length) l = 0;
+                if (r < 0) r = tour.length - 1;
+            }
+            if (tour[0] == 0) return;
+            int pos = 0;
+            for (int i = 0; i < tour.length; i++){
+                if (tour[i] == 0) {
+                    pos = i;
+                    break;
+                }
+            }
+            int[] tempArray = new  int[tour.length];
+            for (int i = 0; i < tour.length; i++){
+                tempArray[i] = tour[pos];
+                pos += 1;
+                if (pos == tour.length) pos = 0;
+            }
+            System.arraycopy(tempArray, 0, tour, 0, tour.length);
+
+        }
+    }
+
 }

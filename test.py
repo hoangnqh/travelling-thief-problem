@@ -3,14 +3,14 @@ import time
 
 instances = [
 
-  "eil76_n75_bounded-strongly-corr_01.ttp"
+#   "eil76_n75_bounded-strongly-corr_01.ttp",
 #   "kroA100_n99_bounded-strongly-corr_01.ttp",
 #   "ch130_n129_bounded-strongly-corr_01.ttp",
-  # "u159_n158_bounded-strongly-corr_01.ttp",
-  # "a280_n279_bounded-strongly-corr_01.ttp",
-  # "u574_n573_bounded-strongly-corr_01.ttp",
-  # "u724_n723_bounded-strongly-corr_01.ttp",
-  # "dsj1000_n999_bounded-strongly-corr_01.ttp",
+#   "u159_n158_bounded-strongly-corr_01.ttp",
+#   "a280_n279_bounded-strongly-corr_01.ttp",
+#   "u574_n573_bounded-strongly-corr_01.ttp",
+#   "u724_n723_bounded-strongly-corr_01.ttp",
+#   "dsj1000_n999_bounded-strongly-corr_01.ttp",
   # "rl1304_n1303_bounded-strongly-corr_01.ttp",
 #   "fl1577_n1576_bounded-strongly-corr_01.ttp",
   # "d2103_n2102_bounded-strongly-corr_01.ttp",
@@ -28,10 +28,10 @@ instances = [
 #   "kroA100_n495_uncorr-similar-weights_05.ttp",
 #   "ch130_n645_uncorr-similar-weights_05.ttp",
   # "u159_n790_uncorr-similar-weights_05.ttp",
-  # "a280_n1395_uncorr-similar-weights_05.ttp",
-  # "u574_n2865_uncorr-similar-weights_05.ttp",
-  # "u724_n3615_uncorr-similar-weights_05.ttp",
-  # "dsj1000_n4995_uncorr-similar-weights_05.ttp",
+  "a280_n1395_uncorr-similar-weights_05.ttp",
+  "u574_n2865_uncorr-similar-weights_05.ttp",
+  "u724_n3615_uncorr-similar-weights_05.ttp",
+  "dsj1000_n4995_uncorr-similar-weights_05.ttp"
   # "rl1304_n6515_uncorr-similar-weights_05.ttp",
 #   "fl1577_n7880_uncorr-similar-weights_05.ttp",
   # "d2103_n10510_uncorr-similar-weights_05.ttp",
@@ -73,5 +73,5 @@ n = 1
 # test all instances
 for instance in instances:
   for i in range(0,n):
-    os.system("java -jar out/artifacts/travelling_thief_problem_jar/travelling-thief-problem.jar "+instance+" algo2 test.csv 600 1")
+    os.system("java -jar out/artifacts/travelling_thief_problem_jar/travelling-thief-problem.jar "+instance+" algo2 algo2.0.csv 600 1")
     time.sleep(1)

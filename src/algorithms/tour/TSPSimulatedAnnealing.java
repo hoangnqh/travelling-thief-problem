@@ -34,25 +34,47 @@ public class TSPSimulatedAnnealing {
         do {
             nbIter++;
 
-            // cleanup and stop execution if interrupted
-            if (Thread.currentThread().isInterrupted()) return;
 
             for (int u=0; u<trials; u++) {
+                // cleanup and stop execution if interrupted
+                if (Thread.currentThread().isInterrupted()) return;
 
-                // browse items randomly
-                c1 = OtherFunction.randInt(1, instance.numOfCities - 2, random);
-                c2 = OtherFunction.randInt(c1 + 1, instance.numOfCities - 1, random);
+                int i = OtherFunction.randInt(1, instance.numOfCities - 1, random);
 
-                int[] newTour = TwoOpt.swapTour(tour, c1, c2);
+                double tempBestZ = -Double.MAX_VALUE;
+                int[] newTour = new int[instance.numOfCities];
 
-                Solution newSolution = instance.evaluate(newTour, pickingPlan);
 
+                for (int j = 1; j < instance.numOfCities; j++){
+                    int[] tempTour = solution.tour.clone();
+                    int pos = i;
+                    while (pos < j){
+                        int temp = tempTour[pos];
+                        tempTour[pos] = tempTour[pos + 1];
+                        tempTour[pos + 1] = temp;
+                        pos += 1;
+                    }
+                    while (pos > j){
+                        int temp = tempTour[pos];
+                        tempTour[pos] = tempTour[pos - 1];
+                        tempTour[pos - 1] = temp;
+                        pos -= 1;
+                    }
+                    int cnt0 = 0;
+                    for (int cc: tempTour) if (cc == 0) cnt0 += 1;
+                    Solution tempSolution = instance.evaluate(tempTour, pickingPlan);
+                    if (tempSolution.Z > tempBestZ){
+                        tempBestZ = tempSolution.Z;
+                        newTour = tempTour.clone();
+                    }
+
+                }
 
                 double mu = random.nextDouble();
-                double energy_gap = newSolution.Z - GBest;
+                double energy_gap = tempBestZ - GBest;
                 boolean acceptance = energy_gap > 0.1 || Math.exp(energy_gap / T) > mu;
                 if (acceptance) {
-                    GBest = newSolution.Z;
+                    GBest = tempBestZ;
                     solution = instance.evaluate(newTour, pickingPlan, true);
                 }
 
@@ -65,6 +87,7 @@ public class TSPSimulatedAnnealing {
                     tour[i] = solution.tour[i];
                 }
                 bestZ = solution.Z;;
+                solution = instance.evaluate(tour, pickingPlan, true);
             }
 
             // cool down temperature

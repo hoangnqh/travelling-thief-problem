@@ -23,7 +23,7 @@ public class Runner {
     };
     public static void main(String[] args) throws IOException {
         if (args.length < 2) {
-            args = new String[]{"eil76_n75_bounded-strongly-corr_01.ttp", "algo2"};
+            args = new String[]{"eil76_n750_uncorr_10.ttp", "algo2"};
         }
         String[] spl = args[0].split("_",2);
 

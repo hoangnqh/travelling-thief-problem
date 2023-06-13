@@ -13,6 +13,7 @@ public class TwoOpt {
         boolean improvement = true;
         while (improvement) {
             improvement = false;
+            loops:
             for (int i = 1; i < tour.length - 1; i++) {
 
                 // stop execution if interrupted
@@ -22,12 +23,11 @@ public class TwoOpt {
                     int[] newTour = swapTour(tour, i, j);
                     Solution newSolution = instance.evaluate(newTour, pickingPlan);
                     if (newSolution.Z > bestZ) {
-//                        System.out.println("2-opt "+newSolution.Z);
+                        System.out.println("2-opt "+newSolution.Z);
 //                        improvement = true;
                         bestZ = newSolution.Z;
-                        for (int k = 0; k < tour.length; k++){
-                            tour[k] = newTour[k];
-                        }
+                        System.arraycopy(newTour, 0, tour, 0, tour.length);
+//                        break loops;
                     }
                 }
             }

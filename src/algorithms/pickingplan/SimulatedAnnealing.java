@@ -143,11 +143,11 @@ public class SimulatedAnnealing {
 
             // update best if improvement
             if (solution.Z > bestZ) {
-//                System.out.println("SA "+solution.Z);
+                System.out.println("SA "+solution.Z);
                 for (int i = 0; i < instance.numOfItems; i++){
                     pickingPlan[i] = solution.pickingPlan[i];
                 }
-                // solution = instance.evaluate(tour, solution.pickingPlan, true);
+//                solution = instance.evaluate(tour, solution.pickingPlan, true);
                 bestZ = solution.Z;;
             }
 

@@ -16,6 +16,7 @@ public class Solution {
     public double[] timeAcc = null;
     // Can nang khi di toi thanh pho thu i
     public long[] weightAcc = null;
+    public long[] ZAcc = null;
 
     public Solution(){}
 

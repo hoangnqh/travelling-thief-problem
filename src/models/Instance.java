@@ -197,7 +197,7 @@ public class Instance {
 //        System.out.println(i+", "+j+", "+numOfCities);
         if (dist == null){
             return (int) Math.ceil(Math.sqrt(Math.pow(coordinates[i][0] - coordinates[j][0], 2)
-                            + Math.pow(coordinates[i][1] - coordinates[j][1], 2)));
+                    + Math.pow(coordinates[i][1] - coordinates[j][1], 2)));
         }
         else return dist[i][j];
     }

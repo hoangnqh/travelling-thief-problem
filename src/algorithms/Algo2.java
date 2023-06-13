@@ -1,11 +1,16 @@
 package algorithms;
 
+import algorithms.pickingplan.ComparatorScore1;
+import algorithms.pickingplan.FillSack;
 import algorithms.pickingplan.SimulatedAnnealing;
 import algorithms.pickingplan.FixPickingPlan;
 import algorithms.tour.*;
 import models.Instance;
+import models.ItemInTour;
+import models.OtherFunction;
 import models.Solution;
 
+import java.util.List;
 import java.util.Random;
 
 public class Algo2 implements Algorithm{
@@ -14,6 +19,7 @@ public class Algo2 implements Algorithm{
         Random random = new Random(randomSeed);
 
         // Using LKH to find TSP
+//        int[] tour = NearestNeighbor.get(instance);
         int[] tour = LinKernighan.get(instance);
         if (tour == null) return new Solution();
 
@@ -26,7 +32,7 @@ public class Algo2 implements Algorithm{
 //        BitFlip.optimize(instance, tour, pickingPlan, random);
 
         Solution solution = instance.evaluate(tour, pickingPlan);
-//        System.out.println("Start: "+solution.Z);
+        System.out.println("Start: "+solution.Z);
         boolean improved;
         do {
             // stop execution if interrupted
@@ -34,21 +40,19 @@ public class Algo2 implements Algorithm{
 
             improved = false;
 
-            // Improve tour base on pickingPlan
-            long checkComplexity = (long) instance.numOfCities * instance.numOfCities * instance.numOfItems;
-            long complexity = 3L * 60 * 100000000;
-            if (checkComplexity < complexity){
-//                ThreeOpt.optimize(instance, tour, pickingPlan, random);
-                TwoOpt.optimize(instance, tour, pickingPlan, random);
-//
-            }
-//            TSPSimulatedAnnealing.optimize(instance, tour, pickingPlan, random);
+            TwoOpt.optimize(instance, tour, pickingPlan, random);
+            TSPSimulatedAnnealing.optimize(instance, tour, pickingPlan, random);
+            OWNN.optimize(instance, tour, pickingPlan, random);
+
+//            MoveACity.optimize(instance, tour, pickingPlan, random);
+//            ThreeOpt.optimize(instance, tour, pickingPlan, random);
 
             // stop execution if interrupted
             if (Thread.currentThread().isInterrupted()) return solution;
 
             // Improve pickingPlan base on tour
 //            BitFlip.optimize(instance, tour, pickingPlan, random);
+
             SimulatedAnnealing.optimize(instance, tour, pickingPlan, random);
 
             // Update best if improvement
